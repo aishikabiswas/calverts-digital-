@@ -66,7 +66,7 @@ export function BrandGrowthBanner() {
               variants={item}
               className="mt-4 text-base sm:text-lg text-muted-foreground"
             >
-              Partner to plan, launch, and accelerate brand growth across web, product, and marketing touchpoints. [20][21]
+              Partner to plan, launch, and accelerate brand growth across web, product, and marketing touchpoints. 
             </motion.p>
 
             {/* Updated CTA: rounded two-part button */}

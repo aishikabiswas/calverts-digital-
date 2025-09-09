@@ -8,11 +8,11 @@ import { Contact } from "@/components/contact"
 import { FAQSection } from "@/components/faq-section"
 import { TrustedBy } from "@/components/trustedby"
 import { StickyFooter } from "@/components/sticky-footer"
-import { ImpactStats } from "@/components/impactstats"
+import ImpactStats from "@/components/impactstats"
 import CredibilityPage from "@/components/credibilitypage"
 import { BrandGrowthBanner } from "@/components/brandgrowthbanner"
 import AboutPage from "@/components/aboutus"
-import TeamPage from "@/components/teampage"
+// import {TeamPage} from "@/components/teampage"
 import ExpertisePage from "@/components/expertisepage"
 import DigitalMarketingPage from "@/components/digitalmarkettingpage"
 import InsightsPage from "@/components/insightspage"
@@ -87,7 +87,7 @@ export default function Home() {
   <Image
     src="/logo.jpg"
     alt="Calverts Digital Technology Logo"
-    width={80}
+    width={75}
     height={40}
     quality={100}
     priority
@@ -210,24 +210,14 @@ export default function Home() {
           >
             <span className="relative z-20">Insights</span>
           </a>
-           <a
-            className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            onClick={(e) => {
-              e.preventDefault()
-              const element = document.getElementById("contact")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
-            }}
-          >
-            <span className="relative z-20">Contact</span>
+           
+        </div>
+        <div className="flex items-center gap-4">
+          <a
+            href="/contact"
+            className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-primary-foreground shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
+            >
+            Contact
           </a>
         </div>
 
@@ -355,18 +345,19 @@ export default function Home() {
         <AboutPage />
       </div>
 
-      <div id="team">
+      {/* <div id="team">
         <TeamPage />
+      </div> */}
+
+      <div id="testimonials">
+        <TestimonialsSection />
       </div>
 
       <div id="expertise">
         <ExpertisePage />
       </div>
 
-      {/* Testimonials Section */}
-      <div id="testimonials">
-        <TestimonialsSection />
-      </div>
+      
 
       <div id="digital-marketing">
         <DigitalMarketingPage />

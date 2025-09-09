@@ -1,146 +1,155 @@
-"use client"
+import { Marquee } from "@/components/magicui/marquee"
 
-import { motion, useInView } from "framer-motion"
-import Image from "next/image"
-import { useRef } from "react"
-import { cn } from "@/lib/utils"
-import { geist } from "@/lib/fonts"
-
-type Member = {
-  name: string
-  role: string
-  photo: string
-}
-
-const team: Member[] = [
-  { name: "Lester Andrew Calvert", role: "Founder & Chief AI Visionary", photo: "/team/lester.jpg" },
-  { name: "Supratim Dhar", role: "Chief Technology & Data Officer", photo: "/team/supratim.jpg" },
-  { name: "Sandip Sharma", role: "AI-Powered Marketing Strategist", photo: "/team/sandip.jpg" },
-  { name: "Aishi", role: "Human-Centered Design & AI Experience Lead", photo: "/team/aishi.jpg" },
-  { name: "Souradip", role: "Lead Machine Learning Engineer", photo: "/team/souradip.jpg" },
-  { name: "Bhaibhav", role: "Full-Stack Developer & Data Engineer", photo: "/team/bhaibhav.jpg" },
-  { name: "Suddhajit", role: "AI-Driven Designer & Developer", photo: "/team/suddhajit.jpg" },
-  { name: "Harleen Kaur", role: "Innovation Delivery Manager – AI Solutions", photo: "/team/harleen.jpg" },
+const teammembers = [
+  {
+    name: "Arjun Mehta",
+    username: "@arjdev",
+    body: "v0 has completely changed the way I build UIs. Generate, copy-paste, done. No more design stress.",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Sara Lin",
+    username: "@sara.codes",
+    body: "Honestly shocked at how smooth the v0 generated components are out of the box. Just works perfectly.",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Devon Carter",
+    username: "@devninja",
+    body: "Our team launched a client site in 2 days using v0 components. Saved so much development time.",
+    img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Priya Shah",
+    username: "@priyacodes",
+    body: "Generated a few components in v0 and everything blended perfectly with our codebase. Massive W.",
+    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Leo Martin",
+    username: "@leobuilds",
+    body: "Found a beautiful hero section in v0, tweaked the prompt, and shipped in 15 minutes. Game changer.",
+    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Chloe Winters",
+    username: "@chloewinters",
+    body: "v0 helped us prototype multiple landing pages without writing CSS once. Pure magic.",
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Ayaan Malik",
+    username: "@ayaan_dev",
+    body: "As a solo founder, v0 lets me move fast without sacrificing design quality. Essential tool.",
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "Monica Reeves",
+    username: "@monicareeves",
+    body: "Can't believe how polished the v0 generated components look. Clients are impressed every time.",
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+  },
+  {
+    name: "James Roy",
+    username: "@jamesrdev",
+    body: "v0 is a lifesaver when deadlines are tight. Generate a component, tweak, and deploy instantly.",
+    img: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face",
+  },
 ]
 
-export default function TeamPage() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+const firstColumn = teammembers.slice(0, 3)
+const secondColumn = teammembers.slice(3, 6)
+const thirdColumn = teammembers.slice(6, 9)
 
-  const container = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, staggerChildren: 0.06 } },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
-  }
-
+const Team = ({
+  img,
+  name,
+  username,
+  body,
+}: {
+  img: string
+  name: string
+  username: string
+  body: string
+}) => {
   return (
-    <section id="team" className="text-foreground relative overflow-hidden py-12 sm:py-24 md:py-32">
-      {/* Subtle pattern background (dots with radial mask) */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10
-                   bg-[radial-gradient(circle,rgba(148,163,184,0.25)_1px,transparent_1px)]
-                   bg-[size:12px_12px]
-                   [mask-image:radial-gradient(ellipse_65%_60%_at_50%_40%,#000_80%,transparent_100%)]"
-      />
-      <div className="via-primary/50 absolute top-0 left-1/2 h-px w-3/5 -translate-x-1/2 bg-gradient-to-r from-transparent to-transparent" />
+    <div className="relative w-full max-w-xs overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] p-10 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset]">
+      <div className="absolute -top-5 -left-5 -z-10 h-40 w-40 rounded-full bg-gradient-to-b from-[#e78a53]/10 to-transparent blur-md"></div>
 
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? "show" : "hidden"}
-        variants={container}
-        className="container mx-auto flex max-w-6xl flex-col items-center gap-6"
-      >
-        {/* Hero */}
-        <motion.h1
-          variants={item}
-          className={cn(
-            "text-center text-4xl font-semibold tracking-tighter md:text-[54px] md:leading-[60px] bg-gradient-to-b from-zinc-600 to-white bg-clip-text text-transparent",
-            geist.className
-          )}
-        >
-          Our Team
-        </motion.h1>
+      <div className="text-white/90 leading-relaxed">{body}</div>
 
-        <motion.p variants={item} className="max-w-3xl text-center text-muted-foreground">
-          “At Calverts Digital, we’re not just a team—we’re a digital family.”
-        </motion.p>
+      <div className="mt-5 flex items-center gap-2">
+        <img src={img || "/placeholder.svg"} alt={name} height="40" width="40" className="h-10 w-10 rounded-full" />
+        <div className="flex flex-col">
+          <div className="leading-5 font-medium tracking-tight text-white">{name}</div>
+          <div className="leading-5 tracking-tight text-white/60">{username}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-        {/* Team grid */}
-        <motion.div
-          variants={item}
-          className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full"
-        >
-          {team.map((m, i) => (
-            <motion.article
-              key={m.name}
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.98 }}
-              transition={{ duration: 0.4, delay: 0.12 + i * 0.04 }}
-              whileHover={{ y: -4 }}
-              className="group overflow-hidden rounded-2xl border border-secondary/40 bg-card/40 backdrop-blur-sm"
+export function TeamPage() {
+  return (
+    <section id="testimonials" className="mb-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-[540px]">
+          <div className="flex justify-center">
+            <button
+              type="button"
+              className="group relative z-[60] mx-auto rounded-full border border-white/20 bg-white/5 px-6 py-1 text-xs backdrop-blur transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-100 md:text-sm"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <Image
-                  src={m.photo}
-                  alt={`${m.name} — ${m.role}`}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  priority={i < 2}
-                />
+              <div className="absolute inset-x-0 -top-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent via-[#e78a53] to-transparent shadow-2xl transition-all duration-500 group-hover:w-3/4"></div>
+              <div className="absolute inset-x-0 -bottom-px mx-auto h-0.5 w-1/2 bg-gradient-to-r from-transparent via-[#e78a53] to-transparent shadow-2xl transition-all duration-500 group-hover:h-px"></div>
+              <span className="relative text-white">Testimonials</span>
+            </button>
+          </div>
+          <h2 className="from-foreground/60 via-foreground to-foreground/60 dark:from-muted-foreground/55 dark:via-foreground dark:to-muted-foreground/55 mt-5 bg-gradient-to-r bg-clip-text text-center text-4xl font-semibold tracking-tighter text-transparent md:text-[54px] md:leading-[60px] __className_bb4e88 relative z-10">
+            What our users say
+          </h2>
 
-                {/* top-right subtle badge dot illustration */}
-                <div className="pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]">
-                  <div className="absolute -right-6 -top-6 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:10px_10px]" />
-                </div>
-              </div>
+          <p className="mt-5 relative z-10 text-center text-lg text-zinc-500">
+            From intuitive design to powerful features, our app has become an essential tool for users around the world.
+          </p>
+        </div>
 
-              <div className="p-5">
-                <h3 className="text-base sm:text-lg font-semibold text-orange-300 tracking-tight">{m.name}</h3>
-                <p className="text-sm text-muted-foreground">{m.role}</p>
+        <div className="my-16 flex max-h-[738px] justify-center gap-6 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]">
+          <div>
+            <Marquee pauseOnHover vertical className="[--duration:20s]">
+              {firstColumn.map((testimonial) => (
+                <TeamPage key={testimonial.username} {...testimonial} />
+              ))}
+            </Marquee>
+          </div>
 
-                {/* Optional socials placeholders */}
-                <div className="mt-4 flex items-center gap-2 text-muted-foreground">
-                  {/* Add links if available */}
-                  {/* <a aria-label="LinkedIn" href="#" className="p-2 rounded-full border border-border hover:bg-accent/40 transition-colors">
-                    <svg ... />
-                  </a> */}
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+          <div className="hidden md:block">
+            <Marquee reverse pauseOnHover vertical className="[--duration:25s]">
+              {secondColumn.map((testimonial) => (
+                <TeamPage key={testimonial.username} {...testimonial} />
+              ))}
+            </Marquee>
+          </div>
 
-        {/* CTA row (optional) */}
-        <motion.div variants={item} className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="/contact?intent=team"
-            className="inline-flex items-center gap-2 rounded-full bg-[#e78a53] px-5 py-2.5 text-white transition-colors hover:bg-[#e78a53]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-          >
-            Work With Our Team
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16" height="16" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-            >
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
+          <div className="hidden lg:block">
+            <Marquee pauseOnHover vertical className="[--duration:30s]">
+              {thirdColumn.map((testimonial) => (
+                <TeamPage key={testimonial.username} {...testimonial} />
+              ))}
+            </Marquee>
+          </div>
+        </div>
+
+        <div className="-mt-8 flex justify-center">
+          <button className="group relative inline-flex items-center gap-2 rounded-full border border-[#e78a53]/30 bg-black/50 px-6 py-3 text-sm font-medium text-white transition-all hover:border-[#e78a53]/60 hover:bg-[#e78a53]/10 active:scale-95">
+            <div className="absolute inset-x-0 -top-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-[#e78a53]/40 to-transparent"></div>
+            <div className="absolute inset-x-0 -bottom-px mx-auto h-px w-3/4 bg-gradient-to-r from-transparent via-[#e78a53]/40 to-transparent"></div>
+            <svg className="h-4 w-4 text-[#e78a53]" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
             </svg>
-          </a>
-          <a
-            href="/about"
-            className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm hover:bg-accent/40 transition-colors"
-          >
-            Learn About Us
-          </a>
-        </motion.div>
-      </motion.div>
+            Share your experience
+          </button>
+        </div>
+      </div>
     </section>
   )
 }

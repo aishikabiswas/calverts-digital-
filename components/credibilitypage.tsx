@@ -69,7 +69,7 @@ export default function CredibilityPage() {
         </motion.h1>
 
         <motion.p variants={item} className="text-center text-muted-foreground max-w-3xl">
-          Officially recognized & incorporated under the Companies Act, 2013, Ministry of Corporate Affairs, Government of India. [1][4]
+          Officially recognized & incorporated under the Companies Act, 2013, Ministry of Corporate Affairs, Government of India. 
         </motion.p>
 
         {/* Certificate card */}
@@ -129,7 +129,7 @@ export default function CredibilityPage() {
             <div className="md:col-span-2">
               <h3 className="text-lg font-semibold tracking-tight">Company status</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                “Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership.” [2][3]
+                “Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership.” 
               </p>
 
               {/* Optional badges */}
@@ -152,7 +152,7 @@ export default function CredibilityPage() {
                   ))}
                 </div>
                 <p className="mt-2 text-xs text-muted-foreground">
-                  Replace placeholders with actual badge assets as applicable. [10][13]
+                  Replace placeholders with actual badge assets as applicable.
                 </p>
               </div>
             </div>

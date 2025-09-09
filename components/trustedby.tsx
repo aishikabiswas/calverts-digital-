@@ -103,7 +103,7 @@ export function TrustedBy() {
         </h2>
 
         <p className="text-center text-muted-foreground max-w-2xl">
-          Showcasing collaborations across Startups, Enterprises, NGOs, FinTech, EdTech, and Healthcare. [11][8]
+          Showcasing collaborations across Startups, Enterprises, NGOs, FinTech, EdTech, and Healthcare.
         </p>
 
         {/* Category groups */}
