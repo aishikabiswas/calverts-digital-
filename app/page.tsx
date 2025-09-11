@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Hero from "@/components/home/hero"
 import Features from "@/components/features"
-import { TestimonialsSection } from "@/components/testimonials"
+import TestimonialsSection from "@/components/testimonials"
 import { Contact } from "@/components/contact"
 import { FAQSection } from "@/components/faq-section"
 import { TrustedBy } from "@/components/trustedby"
@@ -17,6 +17,157 @@ import ExpertisePage from "@/components/expertisepage"
 import DigitalMarketingPage from "@/components/digitalmarkettingpage"
 import InsightsPage from "@/components/insightspage"
 
+function ScrollingText({ text }: { text: string }) {
+  return (
+    <div className="flex items-center justify-center py-16 bg-black relative">
+      <div className="w-full max-w-4xl mx-4">
+        <div 
+          className="relative overflow-hidden rounded-2xl shadow-2xl p-6"
+          style={{
+            background: 'linear-gradient(to right, #F5B97F, #FABB79, #F5B97F)'
+          }}
+        >
+          {/* Gradient overlays for smooth fade effect */}
+          <div 
+            className="absolute inset-y-0 left-0 w-12 z-10"
+            style={{
+              background: 'linear-gradient(to right, rgba(245, 185, 127, 1), transparent)'
+            }}
+          ></div>
+          <div 
+            className="absolute inset-y-0 right-0 w-12 z-10"
+            style={{
+              background: 'linear-gradient(to left, rgba(245, 185, 127, 1), transparent)'
+            }}
+          ></div>
+          
+          {/* Glowing effect */}
+          <div 
+            className="absolute inset-0 blur-xl"
+            style={{
+              background: 'linear-gradient(to right, rgba(245, 185, 127, 0.5), transparent, rgba(245, 185, 127, 0.5))'
+            }}
+          ></div>
+          
+          {/* Scrolling text container */}
+          <div className="relative overflow-hidden">
+            <div
+              className="flex whitespace-nowrap"
+              style={{ 
+                willChange: "transform",
+                animation: "scroll 20s linear infinite"
+              }}
+            >
+              <span className="text-black font-bold text-xl md:text-3xl lg:text-4xl px-8 drop-shadow-lg">
+                {text}
+              </span>
+              <span className="text-black font-bold text-xl md:text-3xl lg:text-4xl px-8 drop-shadow-lg">
+                {text}
+              </span>
+              <span className="text-black font-bold text-xl md:text-3xl lg:text-4xl px-8 drop-shadow-lg">
+                {text}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-33.333%);
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+// New component for Hero scrolling text with custom styling
+function HeroScrollingText() {
+  return (
+    <div className="relative w-full overflow-hidden py-8 bg-black">
+      {/* Background with the peachy-orange glow effect */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, #F5B97F 50%, transparent 100%)'
+        }}
+      />
+      
+      {/* Edge fade effects */}
+      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black to-transparent z-10" />
+      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-black to-transparent z-10" />
+      
+      {/* Scrolling text container */}
+      <div className="relative overflow-hidden">
+        <div
+          className="flex whitespace-nowrap"
+          style={{
+            willChange: "transform",
+            animation: "heroScroll 30s linear infinite"
+          }}
+        >
+          {/* Repeat the text multiple times for seamless loop */}
+          {[...Array(5)].map((_, index) => (
+            <div key={index} className="flex items-center">
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-12"
+                style={{ color: '#F5B97F' }}
+              >
+                Digital Marketing
+              </span>
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-4"
+                style={{ color: '#FABB79' }}
+              >
+                ✦
+              </span>
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-12"
+                style={{ color: '#F5B97F' }}
+              >
+                App Design
+              </span>
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-4"
+                style={{ color: '#FABB79' }}
+              >
+                ✦
+              </span>
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-12"
+                style={{ color: '#F5B97F' }}
+              >
+                Branding
+              </span>
+              <span 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold px-4"
+                style={{ color: '#FABB79' }}
+              >
+                ✦
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes heroScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-20%);
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -60,15 +211,16 @@ export default function Home() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          background: "radial-gradient(ellipse 50% 35% at 50% 0%, rgba(226, 232, 240, 0.12), transparent 60%), #000000",
+          background:
+            "radial-gradient(ellipse 50% 35% at 50% 0%, rgba(226, 232, 240, 0.12), transparent 60%), #000000",
         }}
       />
 
       {/* Desktop Header */}
       <header
-        className={`sticky top-4 z-[9999] mx-auto hidden w-full flex-row items-center justify-between self-start rounded-full bg-background/80 md:flex backdrop-blur-sm border border-border/50 shadow-lg transition-all duration-300 ${
+        className={`sticky top-10 z-[9999] mx-auto hidden w-full h-16 overflow-hidden flex-row items-center justify-between self-start rounded-full bg-black/20 md:flex backdrop-blur-sm border border-gray-250 shadow-lg transition-all duration-300 ${
           isScrolled ? "max-w-3xl px-2" : "max-w-5xl px-4"
-        } py-2`}
+        } py-0`}
         style={{
           willChange: "transform",
           transform: "translateZ(0)",
@@ -77,23 +229,24 @@ export default function Home() {
         }}
       >
         <a
-  className={`z-50 flex items-center justify-center gap-2 transition-all duration-300 ${
-    isScrolled ? "ml-4" : ""
-  }`}
-  href=""
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Image
-    src="/logo.jpg"
-    alt="Calverts Digital Technology Logo"
-    width={75}
-    height={40}
-    quality={100}
-    priority
-    className="object-contain"
-  />
-</a>
+          className={`z-50 flex items-center justify-center gap-5 transition-all duration-300 ${
+            isScrolled ? "ml-4" : ""
+          }`}
+          href=""
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src="/logo.jpg"
+            alt="Calverts Digital Technology Logo"
+            width={110}
+            height={65}
+            quality={100}
+            priority
+            className="object-contain w-auto"
+            style={{ height: "97px" }}
+          />
+        </a>
 
         <div className="absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-muted-foreground transition duration-200 hover:text-foreground md:flex md:space-x-2">
           <a
@@ -115,7 +268,7 @@ export default function Home() {
           >
             <span className="relative z-20">About</span>
           </a>
-           <a
+          {/* <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
@@ -133,8 +286,8 @@ export default function Home() {
             }}
           >
             <span className="relative z-20">Team</span>
-          </a>
-           <a
+          </a> */}
+          <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
@@ -210,54 +363,48 @@ export default function Home() {
           >
             <span className="relative z-20">Insights</span>
           </a>
-           
         </div>
         <div className="flex items-center gap-4">
           <a
             href="/contact"
             className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-primary-foreground shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
-            >
+          >
             Contact
           </a>
         </div>
-
-        
       </header>
 
       {/* Mobile Header */}
-      <header className="sticky top-4 z-[9999] mx-4 flex w-auto flex-row items-center justify-between rounded-full bg-background/80 backdrop-blur-sm border border-border/50 shadow-lg md:hidden px-4 py-3">
+      <header className="sticky top-4 z-[9999] mx-4 flex w-auto h-14 overflow-hidden flex-row items-center justify-between rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg md:hidden px-5 py-0">
         <a
           className="flex items-center justify-center gap-2"
-          href="https://v0.app"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/"
         >
-          <svg
-            fill="currentColor"
-            viewBox="0 0 147 70"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            className="text-foreground rounded-full size-7 w-7"
-          >
-            <path d="M56 50.2031V14H70V60.1562C70 65.5928 65.5928 70 60.1562 70C57.5605 70 54.9982 68.9992 53.1562 67.1573L0 14H19.7969L56 50.2031Z"></path>
-            <path d="M147 56H133V23.9531L100.953 56H133V70H96.6875C85.8144 70 77 61.1856 77 50.3125V14H91V46.1562L123.156 14H91V0H127.312C138.186 0 147 8.81439 147 19.6875V56Z"></path>
-          </svg>
+          <Image
+            src="/logo.jpg"
+            alt="Calverts Digital Technology Logo"
+            width={132}
+            height={100}
+            priority
+            className="object-contain w-auto"
+            style={{ height: "87px" }}
+          />
         </a>
 
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-background/50 border border-border/50 transition-colors hover:bg-background/80"
+          className="flex items-center justify-center w-19 h-19 rounded-full bg-gray-100 border border-gray-300 transition-colors hover:bg-gray-200"
           aria-label="Toggle menu"
         >
           <div className="flex flex-col items-center justify-center w-5 h-5 space-y-1">
             <span
-              className={`block w-4 h-0.5 bg-foreground transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
+              className={`block w-4 h-0.5 bg-gray-900 transition-all duration-300 ${isMobileMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}
             ></span>
             <span
-              className={`block w-4 h-0.5 bg-foreground transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
+              className={`block w-4 h-0.5 bg-gray-900 transition-all duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
             ></span>
             <span
-              className={`block w-4 h-0.5 bg-foreground transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
+              className={`block w-4 h-0.5 bg-gray-900 transition-all duration-300 ${isMobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}
             ></span>
           </div>
         </button>
@@ -281,7 +428,7 @@ export default function Home() {
                 Team
               </button>
               <button
-                onClick={() => handleMobileNavClick("testimonials")}
+                onClick={() => handleMobileNavClick("trustedby")}
                 className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
               >
                 Work
@@ -319,10 +466,17 @@ export default function Home() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Features Section */}
+      {/* NEW: Hero Scrolling Text with peachy-orange color */}
+      <HeroScrollingText />
+
+      <div id="about">
+        <AboutPage />
+      </div>
+
+      {/* Features Section
       <div id="features">
         <Features />
-      </div>
+      </div> */}
 
       {/* Pricing Section */}
       <div id="trustedby">
@@ -337,13 +491,17 @@ export default function Home() {
         <CredibilityPage />
       </div>
 
+      <div id="expertise">
+        <ExpertisePage />
+      </div>
+
       <div id="brand-growth">
         <BrandGrowthBanner />
       </div>
 
-      <div id="about">
+      {/* <div id="about">
         <AboutPage />
-      </div>
+      </div> */}
 
       {/* <div id="team">
         <TeamPage />
@@ -353,11 +511,9 @@ export default function Home() {
         <TestimonialsSection />
       </div>
 
-      <div id="expertise">
+      {/* <div id="expertise">
         <ExpertisePage />
-      </div>
-
-      
+      </div> */}
 
       <div id="digital-marketing">
         <DigitalMarketingPage />
@@ -366,7 +522,6 @@ export default function Home() {
       <div id="insights">
         <InsightsPage />
       </div>
-
 
       <Contact />
 

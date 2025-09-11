@@ -12,7 +12,6 @@ export default function CredibilityPage() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [open, setOpen] = useState(false)
 
-  // optional: lock scroll when modal is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden"
@@ -33,17 +32,18 @@ export default function CredibilityPage() {
     show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
   }
 
-  // TODO: replace with actual certificate file paths
-  const certificateFull = "/certs/incorporation-certificate-full.jpg"
-  const certificateThumb = "/certs/incorporation-certificate-thumb.jpg"
+  const certificateFull = "/Cartificate.png"
+  const certificateThumb = "/ctham.png"
   const certificatePdf = "/certs/incorporation-certificate.pdf"
 
-  // Optional badges: replace logo paths as available
+  // Clean badges array without duplicates
   const badges = [
-    { name: "Google Partner", src: "/badges/google-partner.png" },
-    { name: "ISO 9001", src: "/badges/iso-9001.png" },
-    { name: "Freelancer Verified", src: "/badges/freelancer-verified.png" },
-    { name: "Clutch Listed", src: "/badges/clutch.png" },
+    { name: "Google Partner", src: "/google-certified-professional.png" },
+    { name: "ISO 9001", src: "/blob.png" },
+    { name: "Freelancer Verified", src: "/pci-icon.png" },
+    { name: "Clutch Listed", src: "/PayPal-Logo-History-5-864x540.png" },
+    { name: "AWS", src: "/aws.png" },
+    { name: "Unknown Logo", src: "/images (1).png" },
   ]
 
   return (
@@ -69,10 +69,9 @@ export default function CredibilityPage() {
         </motion.h1>
 
         <motion.p variants={item} className="text-center text-muted-foreground max-w-3xl">
-          Officially recognized & incorporated under the Companies Act, 2013, Ministry of Corporate Affairs, Government of India. 
+          Officially recognized & incorporated under the Companies Act, 2013, Ministry of Corporate Affairs, Government of India.
         </motion.p>
 
-        {/* Certificate card */}
         <motion.div
           variants={item}
           className="mt-8 w-full max-w-4xl rounded-2xl border border-secondary/40 bg-card/40 backdrop-blur-sm p-5"
@@ -129,16 +128,15 @@ export default function CredibilityPage() {
             <div className="md:col-span-2">
               <h3 className="text-lg font-semibold tracking-tight">Company status</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                “Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership.” 
+                “Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership.”
               </p>
 
-              {/* Optional badges */}
               <div className="mt-6">
                 <h4 className="text-sm font-medium text-muted-foreground">Recognitions & Certifications (optional)</h4>
                 <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {badges.map((b) => (
+                  {badges.map((b, index) => (
                     <div
-                      key={b.name}
+                      key={`${b.name}-${index}`}
                       className="flex items-center justify-center rounded-md border border-border/60 bg-background/40 p-3"
                     >
                       <Image
@@ -160,7 +158,6 @@ export default function CredibilityPage() {
         </motion.div>
       </motion.div>
 
-      {/* Lightbox Modal */}
       <AnimatePresence>
         {open && (
           <motion.div

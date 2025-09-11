@@ -141,7 +141,7 @@ export default function AboutPage() {
         </motion.div>
 
         {/* CTA row */}
-        <motion.div variants={item} className="mt-2 flex flex-wrap items-center justify-center gap-3">
+        {/* <motion.div variants={item} className="mt-2 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/contact?intent=about"
             className="inline-flex items-center gap-2 rounded-full bg-[#e78a53] px-5 py-2.5 text-white transition-colors hover:bg-[#e78a53]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
@@ -163,7 +163,7 @@ export default function AboutPage() {
           >
             Explore Our Work
           </Link>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   )
