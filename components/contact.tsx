@@ -22,16 +22,42 @@ export function Contact() {
     name: "",
     email: "",
     company: "",
+    category: "",
+    budget: "",
     message: "",
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const categories = [
+    "Web Development",
+    "Mobile App Development", 
+    "UI/UX Design",
+    "E-commerce Solutions",
+    "Digital Marketing",
+    "SEO Services",
+    "Branding & Identity",
+    "Custom Software",
+    "Consultation",
+    "Other"
+  ]
+
+  const budgetRanges = [
+    "Under $5,000",
+    "$5,000 - $10,000",
+    "$10,000 - $25,000", 
+    "$25,000 - $50,000",
+    "$50,000 - $100,000",
+    "$100,000+",
+    "Not Sure"
+  ]
+
+  const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    alert("Thanks for reaching out!")
+    console.log('Form submitted:', formData)
+    alert("Thanks for reaching out! We'll get back to you soon.")
   }
 
   // Custom Cursor State
@@ -39,7 +65,7 @@ export function Contact() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const moveCursor = (e: MouseEvent) => {
+    const moveCursor = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY })
       setIsVisible(true)
     }
@@ -95,7 +121,6 @@ export function Contact() {
       <div className="rounded-[40px] border border-black/5 dark:border-white/20 p-2 shadow-sm relative overflow-hidden bg-primary">
         
         {/* Radial glow */}
-
         <div
           className="absolute inset-0 z-0"
           style={{
@@ -119,30 +144,36 @@ export function Contact() {
           {/* Call to Action */}
           <motion.div variants={item} className="mb-10 text-center">
             <h2 className={cn("text-4xl font-bold text-white mb-3", geist.className)}>
-              Got a project in mind? Let’s build and grow together.
+              Got a project in mind? Let's build and grow together.
             </h2>
             <p className="text-white/70 max-w-xl mx-auto">Fill out the form below or contact us directly using the info provided.</p>
           </motion.div>
+          
           {/* Contact form */}
           <motion.form variants={item} onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Name"
-              required
-              className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
-            />
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              required
-              className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
-            />
+            {/* Basic Info Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name *"
+                required
+                className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email *"
+                required
+                className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+              />
+            </div>
+
+            {/* Company Field */}
             <input
               type="text"
               name="company"
@@ -151,22 +182,75 @@ export function Contact() {
               placeholder="Company"
               className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
             />
+
+            {/* Category and Budget Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="relative">
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition appearance-none cursor-pointer"
+                >
+                  <option value="" className="text-muted-foreground">Select Service Category *</option>
+                  {categories.map((category) => (
+                    <option key={category} value={category} className="text-foreground">
+                      {category}
+                    </option>
+                  ))}
+                </select>
+                {/* Custom dropdown arrow */}
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg className="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+
+              <div className="relative">
+                <select
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-orange-300 transition appearance-none cursor-pointer"
+                >
+                  <option value="" className="text-muted-foreground">Select Budget Range</option>
+                  {budgetRanges.map((budget) => (
+                    <option key={budget} value={budget} className="text-foreground">
+                      {budget}
+                    </option>
+                  ))}
+                </select>
+                {/* Custom dropdown arrow */}
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg className="w-5 h-5 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Message Field */}
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Message"
+              placeholder="Tell us about your project *"
               rows={5}
               required
               className="rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground resize-y focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
             />
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="inline-block rounded-full bg-orange-300 px-8 py-3 font-semibold text-white hover:bg-orange-400 transition"
+              className="inline-block rounded-full bg-orange-300 px-8 py-3 font-semibold text-white hover:bg-orange-400 transition-all duration-300 hover:scale-105 transform"
             >
               Send Message
             </button>
           </motion.form>
+          
           {/* Contact Info */}
           <motion.div variants={item} className="mt-12 text-white/90 space-y-6">
             <h3 className="text-xl font-semibold mb-2">Contact Information</h3>
