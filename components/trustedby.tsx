@@ -8,7 +8,7 @@ import { geist } from "@/lib/fonts"
 
 const categories = [
   {
-    title: "Author",
+    title: "Startups",
     logos: [
       { src: "/a1.png", alt: "Author Portfolio" },
       { src: "/a2.png", alt: "SKT Actor" },
@@ -17,7 +17,7 @@ const categories = [
     ],
   },
   {
-    title: "Automotive",
+    title: "Enterprises",
     logos: [
       { src: "/e1.png", alt: "SKT Taxi" },
       { src: "/e3.png", alt: "Towing" },
@@ -26,7 +26,7 @@ const categories = [
     ],
   },
   {
-    title: "Blog",
+    title: "NGOs",
     logos: [
       { src: "/b1.png", alt: "SKT Handyman Pro" },
       { src: "/b2.png", alt: "Girlie Pro" },
@@ -35,7 +35,7 @@ const categories = [
     ],
   },
   {
-    title: "Hotel",
+    title: "FinTech",
     logos: [
       { src: "/h1.png", alt: "SKT Travel" },
       { src: "/h2.png", alt: "SKT Amusement Park" },
@@ -44,7 +44,7 @@ const categories = [
     ],
   },
   {
-    title: "Gutenberg",
+    title: "EdTech",
     logos: [
       { src: "/g1.png", alt: "Bakery Blocks Pro" },
       { src: "/g2.png", alt: "GB Shoes" },
@@ -53,7 +53,7 @@ const categories = [
     ],
   },
   {
-    title: "Real Estate",
+    title: "Healthcare",
     logos: [
       { src: "/r1.png", alt: "The Real Estate" },
       { src: "/r2.png", alt: "SKT Interior Pro" },

@@ -297,57 +297,102 @@ export function Contact() {
             </button>
           </form>
           
-          {/* Contact Info */}
+          {/* Contact Info with Map */}
           <div className="mt-12 text-white/90 space-y-6">
-            <h3 className="text-xl font-semibold mb-2 flex items-center">
+            <h3 className="text-xl font-semibold mb-4 flex items-center">
               <svg className="w-6 h-6 mr-2 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
               Contact Information
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-              <div>
-                <p className="mb-2">
-                  <strong className="text-orange-300">📧 Email:</strong>
-                </p>
-                <p>
-                  <a href="mailto:lestercalvert377@gmail.com" className="underline hover:text-orange-300 transition-colors">
-                    lestercalvert377@gmail.com
-                  </a>
-                </p>
-                <p>
-                  <a href="mailto:supratimdhara@gmail.com" className="underline hover:text-orange-300 transition-colors">
-                    supratimdhara@gmail.com
-                  </a>
-                </p>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Contact Details */}
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                  <div>
+                    <p className="mb-3">
+                      <strong className="text-orange-300">📧 Email:</strong>
+                    </p>
+                    <p className="mb-2">
+                      <a href="mailto:lestercalvert377@gmail.com" className="underline hover:text-orange-300 transition-colors">
+                        lestercalvert377@gmail.com
+                      </a>
+                    </p>
+                    <p>
+                      <a href="mailto:supratimdhara@gmail.com" className="underline hover:text-orange-300 transition-colors">
+                        supratimdhara@gmail.com
+                      </a>
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <p className="mb-3">
+                      <strong className="text-orange-300">📱 Phone:</strong>
+                    </p>
+                    <p className="mb-2">
+                      <a href="tel:+918583999129" className="underline hover:text-orange-300 transition-colors">
+                        +91 85839 99129
+                      </a>
+                    </p>
+                    <p>
+                      <a href="tel:+918240356758" className="underline hover:text-orange-300 transition-colors">
+                        +91 82403 56758
+                      </a>
+                    </p>
+                  </div>
+                </div>
+                
+                <div>
+                  <p className="mb-2">
+                    <strong className="text-orange-300">🏢 Address:</strong>
+                  </p>
+                  <address className="not-italic text-white/80 leading-relaxed">
+                    Calverts Digital Technology Pvt. Ltd.<br />
+                    16/27/41 A, Chak Thankurani, Pragati Pally,<br />
+                    Kalitala Road, Kolkata, West Bengal – 700104
+                  </address>
+                  <div className="mt-3">
+                    <a 
+                      href="https://maps.app.goo.gl/coyhhQqF9SQY8rL69" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-orange-300 hover:text-orange-400 transition-colors text-sm"
+                    >
+                      <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                      View on Google Maps
+                    </a>
+                  </div>
+                </div>
               </div>
               
-              <div>
-                <p className="mb-2">
-                  <strong className="text-orange-300">📱 Phone:</strong>
-                </p>
-                <p>
-                  <a href="tel:+918583999129" className="underline hover:text-orange-300 transition-colors">
-                    +91 85839 99129
-                  </a>
-                </p>
-                <p>
-                  <a href="tel:+918240356758" className="underline hover:text-orange-300 transition-colors">
-                    +91 82403 56758
-                  </a>
-                </p>
+              {/* Map Embed */}
+              <div className="relative rounded-lg overflow-hidden border border-white/20">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3688.058895780621!2d88.38245217541659!3d22.461982279558027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02713b5ad42b05%3A0x123456789abcdef0!2s16%2F27%2F41%20A%2C%20Chak%20Thankurani%2C%20Pragati%20Pally%2C%20Kalitala%20Rd%2C%20Kolkata%2C%20West%20Bengal%20700104!5e0!3m2!1sen!2sin!4v1695123456789!5m2!1sen!2sin"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Calverts Digital Technology Office Location"
+                  className="opacity-90 hover:opacity-100 transition-opacity duration-300"
+                ></iframe>
+                
+                {/* Map overlay with company info */}
+                <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-sm text-white text-xs px-3 py-2 rounded-lg">
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 mr-1 text-orange-300" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="font-medium">Our Office</span>
+                  </div>
+                  <div className="text-white/80 mt-1">Kolkata, West Bengal</div>
+                </div>
               </div>
-            </div>
-            
-            <div>
-              <p className="mb-2">
-                <strong className="text-orange-300">🏢 Address:</strong>
-              </p>
-              <address className="not-italic text-white/80 leading-relaxed">
-                Calverts Digital Technology Pvt. Ltd.<br />
-                16/27/41 A, Chak Thankurani, Pragati Pally,<br />
-                Kalitala Road, Kolkata, West Bengal – 700104
-              </address>
             </div>
           </div>
         </div>
