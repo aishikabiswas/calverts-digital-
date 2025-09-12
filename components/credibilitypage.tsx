@@ -34,7 +34,7 @@ export default function CredibilityPage() {
 
   const certificateFull = "/Cartificate.png"
   const certificateThumb = "/ctham.png"
-  const certificatePdf = "/certs/incorporation-certificate.pdf"
+  const certificatePdf = "https://drive.google.com/file/d/1L8_c1jbvRFbdtD-v8ixomDavnaVXItv5/view?usp=drive_link"
 
   // Clean badges array without duplicates
   const badges = [
@@ -128,7 +128,7 @@ export default function CredibilityPage() {
             <div className="md:col-span-2">
               <h3 className="text-lg font-semibold tracking-tight">Company status</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                “Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership.”
+                "Calverts Digital Technology Pvt. Ltd. is a registered private limited company, ensuring transparency and trust in every partnership."
               </p>
 
               <div className="mt-6">
@@ -149,9 +149,9 @@ export default function CredibilityPage() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-2 text-xs text-muted-foreground">
+                {/* <p className="mt-2 text-xs text-muted-foreground">
                   Replace placeholders with actual badge assets as applicable.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

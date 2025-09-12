@@ -14,7 +14,11 @@ import {
   Instagram,
   ChevronUp,
   Sparkles,
-  Zap
+  Zap,
+  Users,
+  Target,
+  TrendingUp,
+  MessageCircle
 } from "lucide-react"
 
 export function StickyFooter() {
@@ -50,18 +54,74 @@ export function StickyFooter() {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
+  const scrollToSection = (elementId: string) => {
+    const element = document.getElementById(elementId)
+    if (element) {
+      const headerOffset = 120
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
+  }
+
+  const scrollToContact = () => {
+    const contactSection = document.querySelector('.contact') || document.getElementById('contact')
+    if (contactSection) {
+      const headerOffset = 120
+      const elementPosition = contactSection.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
+  }
+
   const mainLinks = [
-    { label: "Work", href: "/work", icon: Zap },
-    { label: "Services", href: "#services", icon: Sparkles },
-    { label: "About", href: "#about" },
-    { label: "Team", href: "#team" },
-    { label: "Insights", href: "#insights" },
+    { 
+      label: "About", 
+      onClick: () => scrollToSection("about"), 
+      icon: Users,
+      href: "#about" 
+    },
+    { 
+      label: "Work", 
+      onClick: () => scrollToSection("trustedby"), 
+      icon: Sparkles,
+      href: "#trustedby" 
+    },
+    { 
+      label: "Expertise", 
+      onClick: () => scrollToSection("expertise"), 
+      icon: Target,
+      href: "#expertise" 
+    },
+    { 
+      label: "Team", 
+      onClick: () => scrollToSection("testimonials"), 
+      icon: MessageCircle,
+      href: "#testimonials" 
+    },
+    { 
+      label: "Marketing", 
+      onClick: () => scrollToSection("digital-marketing"), 
+      icon: TrendingUp,
+      href: "#digital-marketing" 
+    },
+    
   ]
 
   const contactInfo = [
-    { icon: Mail, text: "hello@calvertsdigital.com", href: "mailto:hello@calvertsdigital.com" },
-    { icon: Phone, text: "+91 98765 43210", href: "tel:+919876543210" },
-    { icon: MapPin, text: "Kolkata, India", href: "#" },
+    { icon: Mail, text: "lestercalvert377@gmail.com", href: "mailto:lestercalvert377@gmail.com" },
+    { icon: Mail, text: "supratimdhara@gmail.com", href: "mailto:supratimdhara@gmail.com" },
+    { icon: Phone, text: "+91 85839 99129", href: "tel:+918583999129" },
+    { icon: Phone, text: "+91 82403 56758", href: "tel:+918240356758" },
+    { icon: MapPin, text: "16/27/41 A, Chak Thankurani, Pragati Pally,Kalitala Road, Kolkata, West Bengal – 700104", href: "https://maps.app.goo.gl/Yf4uMr8AE8W8Tv7B8" },
   ]
 
   const socialLinks = [
@@ -106,7 +166,10 @@ export function StickyFooter() {
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 400 }}
                     >
-                      <Link href="/" className="inline-block">
+                      <button 
+                        onClick={scrollToTop}
+                        className="inline-block cursor-pointer"
+                      >
                         <div className="bg-gradient-to-br from-orange-500 to-pink-500 p-0.5 rounded-2xl">
                           <div className="bg-gray-900 rounded-2xl p-3">
                             <Image 
@@ -118,7 +181,7 @@ export function StickyFooter() {
                             />
                           </div>
                         </div>
-                      </Link>
+                      </button>
                     </motion.div>
                     <p className="text-gray-400 text-sm leading-relaxed">
                       Transforming ideas into digital excellence. We craft innovative solutions that drive growth.
@@ -162,9 +225,9 @@ export function StickyFooter() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: index * 0.05 }}
                           >
-                            <Link
-                              href={link.href}
-                              className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300"
+                            <button
+                              onClick={link.onClick}
+                              className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all duration-300 w-full text-left"
                               onMouseEnter={() => setHoveredLink(link.label)}
                               onMouseLeave={() => setHoveredLink(null)}
                             >
@@ -184,7 +247,7 @@ export function StickyFooter() {
                                 )}
                               </span>
                               <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-                            </Link>
+                            </button>
                           </motion.div>
                         )
                       })}
@@ -230,7 +293,7 @@ export function StickyFooter() {
                         <ChevronUp className="relative w-5 h-5 text-white animate-bounce" />
                       </motion.button>
                       <motion.a
-                        href="#contact"
+                        href="tel:+918583999129"
                         className="relative group px-4 py-2 rounded-xl overflow-hidden text-center"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

@@ -1,12 +1,24 @@
 "use client"
+import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { geist } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 
 export function Contact() {
   const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
   const [isLoading, setIsLoading] = useState(false)
   const [submitStatus, setSubmitStatus] = useState('')
+  
+  const container = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, staggerChildren: 0.07 } },
+  }
+  
+  const item = {
+    hidden: { opacity: 0, y: 12 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+  }
   
   const [formData, setFormData] = useState({
     name: "",
@@ -49,7 +61,6 @@ export function Contact() {
     setIsLoading(true)
     setSubmitStatus('')
 
-    // Validate required fields
     if (!formData.name || !formData.email || !formData.category || !formData.message) {
       setSubmitStatus('Please fill in all required fields.')
       setIsLoading(false)
@@ -57,8 +68,6 @@ export function Contact() {
     }
 
     try {
-      console.log('Submitting form data:', formData) // Debug log
-      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
@@ -67,11 +76,7 @@ export function Contact() {
         body: JSON.stringify(formData),
       })
 
-      console.log('Response status:', response.status) // Debug log
-      
       if (response.ok) {
-        const result = await response.json()
-        console.log('Success:', result) // Debug log
         setSubmitStatus('success')
         setFormData({
           name: "",
@@ -83,12 +88,11 @@ export function Contact() {
         })
       } else {
         const errorData = await response.json()
-        console.error('API Error:', errorData) // Debug log
-        setSubmitStatus(errorData.error || 'Failed to send message. Please try again.')
+        setSubmitStatus(errorData.error || 'An error occurred.')
       }
     } catch (error) {
-      console.error('Network Error:', error) // Debug log
-      setSubmitStatus('Network error. Please check your connection and try again.')
+      setSubmitStatus('An error occurred while sending your message.')
+      console.error('Error:', error)
     } finally {
       setIsLoading(false)
     }
@@ -98,11 +102,19 @@ export function Contact() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 })
   const [isVisible, setIsVisible] = useState(false)
 
+  // Zoom animation variants for the entire contact section container
+  const zoomContainer = {
+    hidden: { opacity: 0, scale: 0.95 },
+    show: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  }
+
   return (
-    <section
-      className="contact mt-12 w-full relative px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto py-16"
+    <motion.section
+      className="mt-12 w-full relative px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+      initial="hidden"
+      animate={isInView ? "show" : "hidden"}
+      variants={zoomContainer}
       ref={ref}
-      id="contact-section"
     >
       {/* Custom cursor */}
       <div
@@ -116,14 +128,15 @@ export function Contact() {
         }}
       />
       
-      <h1
+      <motion.h1
+        variants={item}
         className={cn(
           "text-center text-4xl font-semibold tracking-tighter md:text-[48px] md:leading-[54px] bg-gradient-to-r from-zinc-600 to-white bg-clip-text text-transparent",
           geist.className
         )}
       >
         Contact
-      </h1>
+      </motion.h1>
       <br />
       <br />
       
@@ -145,36 +158,47 @@ export function Contact() {
           }}
         />
         
-        <div className="relative z-10 p-8 rounded-[38px] bg-primary">
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+          variants={container}
+          className="relative z-10 p-8 rounded-[38px] bg-primary"
+        >
           {/* Call to Action */}
-          <div className="mb-10 text-center">
+          <motion.div variants={item} className="mb-10 text-center">
             <h2 className={cn("text-4xl font-bold text-white mb-3", geist.className)}>
               Got a project in mind? Let's build and grow together.
             </h2>
             <p className="text-white/70 max-w-xl mx-auto">Fill out the form below and we'll send your message directly to our team.</p>
-          </div>
+          </motion.div>
           
           {/* Status Messages */}
           {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-900/30 border border-green-400/30 text-green-300 rounded-lg flex items-center">
+            <motion.div 
+              variants={item}
+              className="mb-6 p-4 bg-green-900/30 border border-green-400/30 text-green-300 rounded-lg flex items-center"
+            >
               <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               Your message has been sent successfully! We'll get back to you soon.
-            </div>
+            </motion.div>
           )}
           
           {submitStatus && submitStatus !== 'success' && (
-            <div className="mb-6 p-4 bg-red-900/30 border border-red-400/30 text-red-300 rounded-lg flex items-center">
+            <motion.div 
+              variants={item}
+              className="mb-6 p-4 bg-red-900/30 border border-red-400/30 text-red-300 rounded-lg flex items-center"
+            >
               <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
               {submitStatus}
-            </div>
+            </motion.div>
           )}
           
           {/* Contact form */}
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
+          <motion.form variants={item} onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
             {/* Basic Info Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <input
@@ -295,10 +319,10 @@ export function Contact() {
                 </>
               )}
             </button>
-          </form>
+          </motion.form>
           
           {/* Contact Info */}
-          <div className="mt-12 text-white/90 space-y-6">
+          <motion.div variants={item} className="mt-12 text-white/90 space-y-6">
             <h3 className="text-xl font-semibold mb-2 flex items-center">
               <svg className="w-6 h-6 mr-2 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -350,8 +374,8 @@ export function Contact() {
               </address>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   )
 }

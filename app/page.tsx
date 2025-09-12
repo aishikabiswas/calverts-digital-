@@ -52,10 +52,9 @@ function ScrollingText({ text }: { text: string }) {
           {/* Scrolling text container */}
           <div className="relative overflow-hidden">
             <div
-              className="flex whitespace-nowrap"
+              className="flex whitespace-nowrap animate-scroll"
               style={{ 
-                willChange: "transform",
-                animation: "scroll 20s linear infinite"
+                willChange: "transform"
               }}
             >
               <span className="text-black font-bold text-xl md:text-3xl lg:text-4xl px-8 drop-shadow-lg">
@@ -81,6 +80,10 @@ function ScrollingText({ text }: { text: string }) {
             transform: translateX(-33.333%);
           }
         }
+        
+        .animate-scroll {
+          animation: scroll 8s linear infinite;
+        }
       `}</style>
     </div>
   )
@@ -105,10 +108,9 @@ function HeroScrollingText() {
       {/* Scrolling text container */}
       <div className="relative overflow-hidden">
         <div
-          className="flex whitespace-nowrap"
+          className="flex whitespace-nowrap animate-hero-scroll"
           style={{
-            willChange: "transform",
-            animation: "heroScroll 30s linear infinite"
+            willChange: "transform"
           }}
         >
           {/* Repeat the text multiple times for seamless loop */}
@@ -164,6 +166,10 @@ function HeroScrollingText() {
             transform: translateX(-20%);
           }
         }
+        
+        .animate-hero-scroll {
+          animation: heroScroll 15s linear infinite;
+        }
       `}</style>
     </div>
   )
@@ -203,6 +209,20 @@ export default function Home() {
         })
       }
     }, 100)
+  }
+
+  const scrollToSection = (elementId: string) => {
+    const element = document.getElementById(elementId)
+    if (element) {
+      const headerOffset = 120 // Account for sticky header height + margin
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      })
+    }
   }
 
   return (
@@ -253,121 +273,61 @@ export default function Home() {
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
-              const element = document.getElementById("about")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
+              scrollToSection("about")
             }}
           >
             <span className="relative z-20">About</span>
           </a>
-          {/* <a
-            className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-            onClick={(e) => {
-              e.preventDefault()
-              const element = document.getElementById("Team")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
-            }}
-          >
-            <span className="relative z-20">Team</span>
-          </a> */}
+          
           <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
-              const element = document.getElementById("features")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
+              scrollToSection("trustedby")
             }}
           >
             <span className="relative z-20">Work</span>
           </a>
+          
           <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
-              const element = document.getElementById("expertise")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
+              scrollToSection("expertise")
             }}
           >
             <span className="relative z-20">Expertise</span>
           </a>
+
           <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
-              const element = document.getElementById("marketting")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
+              scrollToSection("testimonials")
             }}
           >
-            <span className="relative z-20">Marketting</span>
+            <span className="relative z-20">Team</span>
           </a>
+          
           <a
             className="relative px-4 py-2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
             onClick={(e) => {
               e.preventDefault()
-              const element = document.getElementById("insights")
-              if (element) {
-                const headerOffset = 120 // Account for sticky header height + margin
-                const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-                const offsetPosition = elementPosition - headerOffset
-
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                })
-              }
+              scrollToSection("digital-marketing")
             }}
           >
-            <span className="relative z-20">Insights</span>
+            <span className="relative z-20">Marketing</span>
           </a>
+          
         </div>
+        
         <div className="flex items-center gap-4">
           <a
-            href="/contact"
             className="rounded-md font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center bg-gradient-to-b from-primary to-primary/80 text-primary-foreground shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset] px-4 py-2 text-sm"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToSection("contact")
+            }}
           >
             Contact
           </a>
@@ -375,7 +335,7 @@ export default function Home() {
       </header>
 
       {/* Mobile Header */}
-      <header className="sticky top-4 z-[9999] mx-4 flex w-auto h-14 overflow-hidden flex-row items-center justify-between rounded-full bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg md:hidden px-5 py-0">
+      <header className="sticky top-4 z-[9999] mx-4 flex w-auto h-14 overflow-hidden flex-row items-center justify-between rounded-full bg-black/90 backdrop-blur-sm border border-gray-200 shadow-lg md:hidden px-5 py-0">
         <a
           className="flex items-center justify-center gap-2"
           href="/"
@@ -416,16 +376,10 @@ export default function Home() {
           <div className="absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md border border-border/50 rounded-2xl shadow-2xl p-6">
             <nav className="flex flex-col space-y-4">
               <button
-                onClick={() => handleMobileNavClick("features")}
+                onClick={() => handleMobileNavClick("about")}
                 className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
               >
                 About
-              </button>
-              <button
-                onClick={() => handleMobileNavClick("pricing")}
-                className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
-              >
-                Team
               </button>
               <button
                 onClick={() => handleMobileNavClick("trustedby")}
@@ -434,19 +388,25 @@ export default function Home() {
                 Work
               </button>
               <button
-                onClick={() => handleMobileNavClick("testimonials")}
+                onClick={() => handleMobileNavClick("expertise")}
                 className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
               >
                 Expertise
               </button>
               <button
+                onClick={() => handleMobileNavClick("digital-marketing")}
+                className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
+              >
+                Marketing 
+              </button>
+              <button
                 onClick={() => handleMobileNavClick("testimonials")}
                 className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
               >
-                Marketting 
+                Testimonials
               </button>
               <button
-                onClick={() => handleMobileNavClick("faq")}
+                onClick={() => handleMobileNavClick("contact")}
                 className="text-left px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-background/50"
               >
                 Contact
@@ -457,7 +417,6 @@ export default function Home() {
               >
                 FAQ
               </button>
-              
             </nav>
           </div>
         </div>
@@ -473,12 +432,12 @@ export default function Home() {
         <AboutPage />
       </div>
 
-      {/* Features Section
+      {/* Features Section - Commented out as requested
       <div id="features">
         <Features />
       </div> */}
 
-      {/* Pricing Section */}
+      {/* Work Section (TrustedBy) */}
       <div id="trustedby">
         <TrustedBy />
       </div>
@@ -499,31 +458,23 @@ export default function Home() {
         <BrandGrowthBanner />
       </div>
 
-      {/* <div id="about">
-        <AboutPage />
-      </div> */}
-
-      {/* <div id="team">
-        <TeamPage />
-      </div> */}
-
       <div id="testimonials">
         <TestimonialsSection />
       </div>
-
-      {/* <div id="expertise">
-        <ExpertisePage />
-      </div> */}
 
       <div id="digital-marketing">
         <DigitalMarketingPage />
       </div>
 
+      {/* Insights Section - Commented out as requested
       <div id="insights">
         <InsightsPage />
-      </div>
+      </div> */}
 
-      <Contact />
+      {/* Contact Section - Fixed with proper ID */}
+      <div id="contact">
+        <Contact />
+      </div>
 
       {/* FAQ Section */}
       <div id="faq">
