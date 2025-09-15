@@ -24,7 +24,7 @@ const teamMembers = [
     name: "Sandip Sharma",
     // username: "@sandip.sharma",
     role: "AI-Powered Marketing Strategist",
-    img: "/WhatsApp Image 2025-09-16 at 00.16.17 (1).jpeg",
+    img: "/sandip.jpeg",
     gradient: "from-green-500/20 to-emerald-500/20",
     expertise: ["Marketing", "Analytics", "Growth"],
     bio: "Strategic marketing professional leveraging AI and data analytics to drive growth and optimize customer engagement across digital channels."
