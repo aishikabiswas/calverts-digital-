@@ -4,67 +4,75 @@ import { Marquee } from "@/components/magicui/marquee";
 const teamMembers = [
   {
     name: "Lester Andrew Calvert",
-    username: "@lester.adrew.calvert",
+    username: "lestercalvert377@gmail.com",
     role: "Founder & Chief AI Visionary",
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-13 at 02.21.50.jpeg",
     gradient: "from-purple-500/20 to-pink-500/20",
-    expertise: ["AI Strategy", "Innovation", "Leadership"]
+    expertise: ["AI Strategy", "Innovation", "Leadership"],
+    bio: "Visionary leader with 15+ years in AI technology, driving innovation and strategic initiatives to transform businesses through artificial intelligence."
   },
   {
-    name: "Supratim Dhar",
-    username: "@supratim.dhar",
+    name: "Supratim dhara",
+    username: "supratimdhara@gmail.com",
     role: "Chief Technology & Data Officer",
-    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-15 at 14.58.28.jpeg",
     gradient: "from-blue-500/20 to-cyan-500/20",
-    expertise: ["Data Science", "Architecture", "Cloud"]
+    expertise: ["Data Science", "Architecture", "Cloud"],
+    bio: "Expert in building scalable data architectures and cloud solutions, with deep expertise in machine learning and data engineering."
   },
   {
     name: "Sandip Sharma",
-    username: "@sandip.sharma",
+    // username: "@sandip.sharma",
     role: "AI-Powered Marketing Strategist",
     img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
     gradient: "from-green-500/20 to-emerald-500/20",
-    expertise: ["Marketing", "Analytics", "Growth"]
+    expertise: ["Marketing", "Analytics", "Growth"],
+    bio: "Strategic marketing professional leveraging AI and data analytics to drive growth and optimize customer engagement across digital channels."
   },
   {
-    name: "Aishi",
-    username: "@aishi",
+    name: "AISHI CHAKRABORTY",
+    // username: "@aishi",
     role: "Human-Centered Design & AI Experience Lead",
-    img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-15 at 19.56.58.jpeg",
     gradient: "from-orange-500/20 to-red-500/20",
-    expertise: ["UX Design", "Research", "Prototyping"]
+    expertise: ["UX Design", "Research", "Prototyping"],
+    bio: "Design leader focused on creating intuitive AI experiences that bridge the gap between complex technology and human needs."
   },
   {
-    name: "Souradip",
-    username: "@souradip",
+    name: "Souradip Pal",
+    // username: "@souradip",
     role: "Lead Machine Learning Engineer",
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-15 at 14.57.01.jpeg",
     gradient: "from-indigo-500/20 to-purple-500/20",
-    expertise: ["ML/DL", "Python", "TensorFlow"]
+    expertise: ["ML/DL", "Python", "TensorFlow"],
+    bio: "Machine learning expert specializing in deep learning architectures, neural networks, and AI model optimization for production systems."
   },
   {
-    name: "Bhaibhav",
-    username: "@bhaibhav",
+    name: "Baivab Mukhopadhyay ",
+    // username: "@bhaibhav",
     role: "Full-Stack Developer & Data Engineer",
-    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-15 at 14.57.02.jpeg",
     gradient: "from-teal-500/20 to-blue-500/20",
-    expertise: ["React", "Node.js", "ETL"]
+    expertise: ["React", "Node.js", "ETL"],
+    bio: "Full-stack engineer with expertise in building scalable web applications and data pipelines that power AI-driven solutions."
   },
   {
-    name: "Suddhajit",
-    username: "@suddhajit",
+    name: "Suddhajit Chowdhury",
+    // username: "@suddhajit",
     role: "AI-Driven Designer & Developer",
-    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    img: "/pf.jpg",
     gradient: "from-rose-500/20 to-pink-500/20",
-    expertise: ["Creative AI", "Frontend", "Motion"]
+    expertise: ["Creative AI", "Frontend", "Motion"],
+    bio: "Creative technologist combining AI tools with traditional design principles to create innovative digital experiences and interactive interfaces."
   },
   {
-    name: "Harleen Kaur",
-    username: "@harleen.kaur",
+    name: "Bhumika Das",
+    // username: "@harleen.kaur",
     role: "Innovation Delivery Manager – AI Solutions",
-    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    img: "/WhatsApp Image 2025-09-15 at 14.57.22.jpeg",
     gradient: "from-amber-500/20 to-orange-500/20",
-    expertise: ["Agile", "Delivery", "Strategy"]
+    expertise: ["Agile", "Delivery", "Strategy"],
+    bio: "Project management expert specializing in AI solution delivery, ensuring seamless execution of complex AI projects from concept to deployment."
   },
 ];
 
@@ -72,14 +80,15 @@ const firstColumn = teamMembers.slice(0, 3);
 const secondColumn = teamMembers.slice(3, 6);
 const thirdColumn = teamMembers.slice(6, 9);
 
-const TeamMemberCard = ({ img, name, username, role, gradient, expertise }) => {
+const TeamMemberCard = ({ img, name, username, role, gradient, expertise, bio, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div 
-      className="relative w-full max-w-xs group"
+      className="relative w-full max-w-xs group cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <div className={`
         relative overflow-hidden rounded-3xl border border-white/10 
@@ -151,7 +160,105 @@ const TeamMemberCard = ({ img, name, username, role, gradient, expertise }) => {
   );
 };
 
+const PopupCard = ({ member, isOpen, onClose }) => {
+  if (!isOpen || !member) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Backdrop */}
+      <div 
+        className="absolute inset-0 bg-black/80 backdrop-blur-sm animate-fade-in"
+        onClick={onClose}
+      ></div>
+      
+      {/* Popup Card */}
+      <div className="relative max-w-md w-full animate-popup-in">
+        <div className={`
+          relative overflow-hidden rounded-3xl border border-white/20 
+          bg-gradient-to-b from-white/[0.12] via-white/[0.08] to-transparent
+          p-8 shadow-2xl backdrop-blur-xl
+        `}>
+          {/* Close button */}
+          <button 
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300 flex items-center justify-center text-white/60 hover:text-white"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Animated gradient background */}
+          <div className={`
+            absolute -top-10 -left-10 h-48 w-48 rounded-full 
+            bg-gradient-to-br ${member.gradient} blur-3xl opacity-70
+            animate-pulse
+          `}></div>
+          
+          {/* Profile image with glow effect */}
+          <div className="relative mb-6 flex justify-center">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#e78a53]/40 to-[#f0a068]/40 rounded-full blur-xl opacity-100"></div>
+            <img 
+              src={member.img || "/placeholder.svg"} 
+              alt={member.name} 
+              className="relative h-24 w-24 rounded-full object-cover ring-4 ring-white/20"
+            />
+            {/* Status indicator */}
+            <div className="absolute bottom-0 right-8 h-6 w-6 bg-green-500 rounded-full border-3 border-black/50 animate-pulse"></div>
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 text-center">
+            <h3 className="text-2xl font-bold text-white mb-2">
+              {member.name}
+            </h3>
+            <p className="text-sm text-white/60 mb-2">{member.username}</p>
+            <p className="text-[#e78a53] font-semibold mb-4 text-lg">
+              {member.role}
+            </p>
+            
+            {/* Bio */}
+            <p className="text-white/80 leading-relaxed mb-6 text-sm">
+              {member.bio}
+            </p>
+            
+            {/* Expertise tags */}
+            <div className="flex flex-wrap gap-2 justify-center mb-6">
+              {member.expertise?.map((skill, idx) => (
+                <span 
+                  key={idx}
+                  className="px-3 py-1 text-sm bg-white/15 text-white/80 rounded-full backdrop-blur-sm border border-white/10"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+
+          </div>
+
+          {/* Shine effect */}
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-transparent via-white/5 to-transparent opacity-100 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function TestimonialsSection() {
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleCardClick = (member) => {
+    setSelectedMember(member);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setSelectedMember(null);
+  };
+
   return (
     <section id="team" className="relative py-24 overflow-hidden bg-black">
       {/* Animated background */}
@@ -188,43 +295,62 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Team marquee */}
+        {/* Team marquee - Slower animations */}
         <div className="mt-20 flex justify-center gap-8 max-h-[800px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
           <div className="hidden lg:block">
-            <Marquee pauseOnHover vertical className="[--duration:25s]">
+            <Marquee pauseOnHover vertical className="[--duration:45s]">
               {firstColumn.map((member) => (
-                <TeamMemberCard key={member.username} {...member} />
+                <TeamMemberCard 
+                  key={member.username} 
+                  {...member} 
+                  onClick={() => handleCardClick(member)}
+                />
               ))}
             </Marquee>
           </div>
 
           <div className="hidden md:block">
-            <Marquee reverse pauseOnHover vertical className="[--duration:30s]">
+            <Marquee reverse pauseOnHover vertical className="[--duration:50s]">
               {secondColumn.map((member) => (
-                <TeamMemberCard key={member.username} {...member} />
+                <TeamMemberCard 
+                  key={member.username} 
+                  {...member} 
+                  onClick={() => handleCardClick(member)}
+                />
               ))}
             </Marquee>
           </div>
 
           <div>
-            <Marquee pauseOnHover vertical className="[--duration:35s]">
+            <Marquee pauseOnHover vertical className="[--duration:55s]">
               {thirdColumn.map((member) => (
-                <TeamMemberCard key={member.username} {...member} />
+                <TeamMemberCard 
+                  key={member.username} 
+                  {...member} 
+                  onClick={() => handleCardClick(member)}
+                />
               ))}
             </Marquee>
           </div>
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-20 text-center">
+        {/*<div className="mt-20 text-center">
           <button className="group relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#e78a53] to-[#f0a068] px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(231,138,83,0.5)] hover:scale-105">
             <span>Join Our Team</span>
             <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </button>
-        </div>
+        </div>*/}
       </div>
+
+      {/* Popup Modal */}
+      <PopupCard 
+        member={selectedMember}
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+      />
 
       <style jsx>{`
         @keyframes float-slow {
@@ -249,13 +375,28 @@ export default function TestimonialsSection() {
           0%, 100% { opacity: 0.8; }
           50% { opacity: 1; }
         }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes popup-in {
+          from { 
+            opacity: 0; 
+            transform: scale(0.8) translateY(20px); 
+          }
+          to { 
+            opacity: 1; 
+            transform: scale(1) translateY(0); 
+          }
+        }
         .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
         .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
         .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
         .animate-spin-slow { animation: spin-slow 20s linear infinite; }
         .animate-gradient { animation: gradient 3s ease-in-out infinite; }
+        .animate-fade-in { animation: fade-in 0.3s ease-out; }
+        .animate-popup-in { animation: popup-in 0.4s ease-out; }
       `}</style>
     </section>
   );
 }
-
